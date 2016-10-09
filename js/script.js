@@ -91,12 +91,12 @@
 	var dateContent = document.querySelector("#date");
 	var monthContent = document.querySelector("#month");
 
-	var days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+	var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 	var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 	var date = new Date();
 
-	dayContent.textContent = days[date.getDay()-1];
+	dayContent.textContent = days[date.getDay()];
 	dateContent.textContent = date.getDate();
 	monthContent.textContent = month[date.getMonth()];
 
