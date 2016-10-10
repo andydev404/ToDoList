@@ -68,22 +68,42 @@
 
 		taskNumber.textContent = (document.getElementById("todo").children.length);
 		taskNumberOne.textContent = document.getElementById("completed").children.length;
+		
+
+		//Send notifications
+
+		var Push = {
+			send: function(title, options){
+				if( this.validate() && this.permission()){
+					var options = options || {};
+					var n = new Notification(title, options);
+					setTimeout(n.close.bind(n), 4000);
+				}
+			},
+			validate: function(){
+				if( !("Notification" in window) ){
+					alert("The browser does not support notifications.");
+					return false;
+				}
+				return true;
+			},
+			permission: function(){
+				var perms = Notification.permission;
+				if( perms === 'granted' ){
+					return true;
+				}else if( perms === 'denied' || perms === 'default' ){
+					alert('Please let me send notifications :\'(');
+				}
+			}
+		};
 
 		if(parentId != "completed"){
-			Push.create("Task Completed", {
-			    body: "Your Task has been Successfully Completed :)",
-			    timeout: 5000,
-			    icon: "img/notification.png",
-			    onClick: function () {
-			        window.focus();
-			        this.close();
-			    }
-			});
+			Push.send('Task Completed', { body: 'Your Task has been Successfully Completed :)', icon: 'img/notification.png' });
 		}
 		
 	}
 
-		
+	
 	//Add Date
 
 	var dayContent = document.querySelector("#day");
