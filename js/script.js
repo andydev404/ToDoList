@@ -84,7 +84,6 @@
 	}
 
 		
-	
 	//Add Date
 
 	var dayContent = document.querySelector("#day");
